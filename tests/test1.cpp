@@ -65,9 +65,9 @@ TEST_CASE("Addig node") {
 TEST_CASE("Deleting node") {
     BSTree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
-    tree.delete_units(25);
-    tree.delete_units(0);
-    tree.delete_units(12);
+    tree.delete_unit(25);
+    tree.delete_unit(0);
+    tree.delete_unit(12);
 
     std::string result = "34  4  7  9  67  78  ";
 
