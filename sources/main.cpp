@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
                          "обход\n";
             char c;
             std::cin >> c;
-            tree.print_units((traversal_order)c);
+            tree.print_units(std::cout,(traversal_order)c);
             break;
         case 3:
             std::cout << "Введите значение для нового узла:";
