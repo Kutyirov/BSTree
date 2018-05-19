@@ -219,7 +219,7 @@ auto Tree::print(Node* p, unsigned n) const
 auto BSTree::Tree::print_direct(std::ostream& output, const Node* p) const -> std::ostream& {
    if(p != nullptr) {
         output << p->data<<"  ";
-        print_ditect(output, p->left);
+        print_direct(output, p->left);
         print_direct(output, p->right);
     }
     return output;
