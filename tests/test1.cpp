@@ -125,5 +125,6 @@ TEST_CASE("Saving in and loading from file") {
 	std::string result;
 	getline(out, result);
 
+
 	REQUIRE(result == text);
 }
