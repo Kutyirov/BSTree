@@ -10,8 +10,8 @@
 TEST_CASE("Creating tree") {
 	BSTree::Tree tree;
 	REQUIRE(tree.empty_tree() == true);
-	BSTree::Tree tree{ 1 };
-	REQUIRE(tree.empty_tree() == false);
+	BSTree::Tree tree2{ 1 };
+	REQUIRE(tree2.empty_tree() == false);
 }
 
 TEST_CASE("Creating tree2") {
