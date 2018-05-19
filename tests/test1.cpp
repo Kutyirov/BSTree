@@ -24,7 +24,7 @@ TEST_CASE("Printing of tree by various traversal order") {
 
 	tree.print_units(out, BSTree::traversal_order::direct);
 	out << std::endl;
-	tree.print_units(out, BSTree::traversal_order::direct);
+	tree.print_units(out, BSTree::traversal_order::symmetric);
 	out << std::endl;
 	tree.print_units(out, BSTree::traversal_order::reverse);
 	out << std::endl;
