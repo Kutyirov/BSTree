@@ -38,7 +38,7 @@ TEST_CASE("Printing of tree by various traversal order") {
 	getline(out, result_reverse);
 
 	REQUIRE(direct == result_direct);
-	REQUIRE(in == result_symmetric);
+	REQUIRE(symmetric == result_symmetric);
 	REQUIRE(reverse == result_reverse);
 }
 
@@ -99,8 +99,8 @@ TEST_CASE("Inputsymmetric file") {
 
 TEST_CASE("Existence of node") {
 	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
-	REQUIRE(tree.search(8) == true);
-	REQUIRE(tree.search(100) == false);
+	REQUIRE(tree.exists(8) == true);
+	REQUIRE(tree.exists(100) == false);
 }
 
 TEST_CASE("Saving in and loading from file") {
