@@ -26,9 +26,9 @@ class Tree {
   //параметр - кол-во нулей для
   //текущего узла
 
-  auto print_direct(std::ostream& out, const BStree::Node* node) const-> std::ostream&;  //вывод 3-х обходов
-  auto print_symmetric(std::ostream& out, const BStree::Node* node) const-> std::ostream&;
-  auto print_reverse(std::ostream& out, const BStree::Node* node) const-> std::ostream&;
+  auto print_direct(std::ostream& out, const BSTree::Node* node) const-> std::ostream&;  //вывод 3-х обходов
+  auto print_symmetric(std::ostream& out, const BSTree::Node* node) const-> std::ostream&;
+  auto print_reverse(std::ostream& out, const BSTree::Node* node) const-> std::ostream&;
   auto save(std::ostream&, Node*) const
       -> void;  //перегрузка сохранения для рекурсии
 
