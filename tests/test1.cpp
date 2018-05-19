@@ -1,6 +1,7 @@
 #include "catch.hpp"
-#include <BSTree.hpp>
+#include "BSTree.hpp"
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <iostream>
 #include <fstream>
