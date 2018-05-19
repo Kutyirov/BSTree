@@ -7,12 +7,12 @@
 #include <fstream>
 
 
-//TEST_CASE("Creating tree") {
-//	BSTree::Tree tree;
-//	REQUIRE(tree.empty_tree() == true);
-//	BSTree::Tree tree_{ 1 };
-//	REQUIRE(tree_.empty_tree() == false);
-//}
+TEST_CASE("Creating tree") {
+	BSTree::Tree tree;
+	REQUIRE(tree.empty_tree() == true);
+	BSTree::Tree tree_{ 1 };
+	REQUIRE(tree_.empty_tree() == false);
+}
 
 TEST_CASE("Printing of tree by various traversal order") {
 	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
