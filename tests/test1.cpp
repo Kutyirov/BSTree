@@ -7,14 +7,14 @@
 
 
 TEST_CASE("Creating tree") {
-    BSTree::Tree<int> tree;
+    BSTree::Tree tree;
     REQUIRE(tree.empty_tree() == false);
-    BSTree::Tree<int> tree_{1};
+    BSTree::Tree tree_{1};
     REQUIRE(tree_.empty_tree() == true);
 }
 
 TEST_CASE("Printing of tree by various traversal order") {
-    BSTree::Tree<int> tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
     std::string pre = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
     std::string in = "1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  ";
     std::string post = "1  3  2  5  7  6  4  9  11  10  13  15  14  12  8  ";
@@ -43,7 +43,7 @@ TEST_CASE("Printing of tree by various traversal order") {
 }
 
 TEST_CASE("Addig node") {
-    BSTree::Tree<int> tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
+    BSTree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
     tree.insert(1);
     tree.insert(20);
@@ -63,7 +63,7 @@ TEST_CASE("Addig node") {
 }
 
 TEST_CASE("Deleting node") {
-    BSTree::Tree<int> tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
+    BSTree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
     tree.delete_units(25);
     tree.delete_units(0);
@@ -83,7 +83,7 @@ TEST_CASE("Deleting node") {
 }
 
 TEST_CASE("Input in file") {
-    BSTree::Tree<int> tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
 
     std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
     std::string buffer;
@@ -98,14 +98,14 @@ TEST_CASE("Input in file") {
 }
 
 TEST_CASE("Existence of node") {
-    BSTree::Tree<int> tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
     REQUIRE(tree.exists(8) == true);
     REQUIRE(tree.exists(100) == false);
 }
 
 TEST_CASE("Saving in and loading from file") {
-    BSTree::Tree<int> tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
-    BSTree::Tree<int> tree1;
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    BSTree::Tree tree1;
 
     std::ofstream fout("answer.txt");
     fout << "Да";
