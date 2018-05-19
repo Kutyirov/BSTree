@@ -219,25 +219,25 @@ auto Tree::print(Node* p, unsigned n) const
 auto BSTree::Tree::print_direct(std::ostream& output, const Node* p) const -> std::ostream& {
    if(p != nullptr) {
         output << p->data<<"  ";
-        print_pre(output, p->left);
-        print_pre(output, p->right);
+        print_ditect(output, p->left);
+        print_direct(output, p->right);
     }
     return output;
 }
 
 auto BSTree::Tree::print_symmetric(std::ostream& output, const Node* p) const -> std::ostream& {
    if(p != nullptr) {
-        print_pre(output, p->left);
+        print_symmetric(output, p->left);
         output << p->data<<"  ";
-        print_pre(output, p->right);
+        print_symmetric(output, p->right);
     }
     return output;
 }
 
 auto BSTree::Tree::print_reverse(std::ostream& output, const Node* p) const -> std::ostream& {
   if(p != nullptr) {
-        print_pre(output, p->left);
-        print_pre(output, p->right);
+        print_reverse(output, p->left);
+        print_reverse(output, p->right);
         output << p->data<<"  ";
     }
     return output;
