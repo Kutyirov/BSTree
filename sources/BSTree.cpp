@@ -216,28 +216,31 @@ auto Tree::print(Node* p, unsigned n) const
   }
 }
 
-auto BSTree::Tree::print_direct(Node* p) const -> void {
-  std::cout << p->data << " ";
-  if (p->left != nullptr)
-    print_direct(p->left);
-  if (p->right != nullptr)
-    print_direct(p->right);
+auto BSTree::Tree::print_direct(std::ostream& output, Node* p) const -> std::ostream& {
+   if(p != nullptr) {
+        output << p->data<<"  ";
+        print_pre(output, p->left);
+        print_pre(output, p->right);
+    }
+    return output;
 }
 
-auto BSTree::Tree::print_symmetric(Node* p) const -> void {
-  if (p->left != nullptr)
-    print_symmetric(p->left);
-  if (p->right != nullptr)
-    print_symmetric(p->right);
-  std::cout << p->data << " ";
+auto BSTree::Tree::print_symmetric(std::ostream& output, Node* p) const -> std::ostream& {
+   if(p != nullptr) {
+        print_pre(output, p->left);
+        output << p->data<<"  ";
+        print_pre(output, p->right);
+    }
+    return output;
 }
 
-auto BSTree::Tree::print_reverse(Node* p) const -> void {
-  if (p->left != nullptr)
-    print_reverse(p->left);
-  std::cout << p->data << " ";
-  if (p->right != nullptr)
-    print_reverse(p->right);
+auto BSTree::Tree::print_reverse(std::ostream& output, Node* p) const -> std::ostream& {
+  if(p != nullptr) {
+        print_pre(output, p->left);
+        print_pre(output, p->right);
+        output << p->data<<"  ";
+    }
+    return output;
 }
 
 auto Tree::save(const std::string& way) const -> bool {
