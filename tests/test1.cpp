@@ -7,14 +7,14 @@
 
 
 TEST_CASE("Creating tree") {
-	BStree::Tree tree;
+	BSTree::Tree tree;
 	REQUIRE(tree.empty_tree() == false);
-	BStree::Tree tree_{ 1 };
+	BSTree::Tree tree_{ 1 };
 	REQUIRE(tree_.empty_tree() == true);
 }
 
 TEST_CASE("Printing of tree by various traversal order") {
-	BStree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
 	std::string direct = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
 	std::string symmetric = "1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  ";
 	std::string reverse = "1  3  2  5  7  6  4  9  11  10  13  15  14  12  8  ";
@@ -22,11 +22,11 @@ TEST_CASE("Printing of tree by various traversal order") {
 	std::string str;
 	std::stringstream out(str);
 
-	tree.print_units(out, BStree::traversal_order::direct);
+	tree.print_units(out, BSTree::traversal_order::direct);
 	out << std::endl;
-	tree.print_units(out, BStree::traversal_order::in);
+	tree.print_units(out, BSTree::traversal_order::in);
 	out << std::endl;
-	tree.print_units(out, BStree::traversal_order::reverse);
+	tree.print_units(out, BSTree::traversal_order::reverse);
 	out << std::endl;
 
 	std::string result_direct;
@@ -43,7 +43,7 @@ TEST_CASE("Printing of tree by various traversal order") {
 }
 
 TEST_CASE("Addig node") {
-	BStree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
+	BSTree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
 	tree.insert(1);
 	tree.insert(20);
@@ -53,7 +53,7 @@ TEST_CASE("Addig node") {
 	std::string str;
 	std::stringstream out(str);
 
-	tree.print_units(out, BStree::traversal_order::direct);
+	tree.print_units(out, BSTree::traversal_order::direct);
 
 	std::string result = "25  12  4  0  1  7  5  9  20  34  67  78  ";
 	std::string result_of_adding;
@@ -63,7 +63,7 @@ TEST_CASE("Addig node") {
 }
 
 TEST_CASE("Deleting node") {
-	BStree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
+	BSTree::Tree tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
 	tree.delete_unit(25);
 	tree.delete_unit(0);
@@ -74,7 +74,7 @@ TEST_CASE("Deleting node") {
 	std::string str;
 	std::stringstream out(str);
 
-	tree.print_units(out, BStree::traversal_order::direct);
+	tree.print_units(out, BSTree::traversal_order::direct);
 
 	std::string result_of_deleting;
 	getline(out, result_of_deleting);
@@ -83,7 +83,7 @@ TEST_CASE("Deleting node") {
 }
 
 TEST_CASE("Inputsymmetric file") {
-	BStree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
 
 	std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
 	std::string buffer;
@@ -98,14 +98,14 @@ TEST_CASE("Inputsymmetric file") {
 }
 
 TEST_CASE("Existence of node") {
-	BStree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
 	REQUIRE(tree.search(8) == true);
 	REQUIRE(tree.search(100) == false);
 }
 
 TEST_CASE("Saving in and loading from file") {
-	BStree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
-	BStree::Tree tree1;
+	BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+	BSTree::Tree tree1;
 
 	std::ofstream fout("answer.txt");
 	fout << "Да";
@@ -113,8 +113,8 @@ TEST_CASE("Saving in and loading from file") {
 
 	std::freopen("answer.txt", "r", stdin);
 
-	tree.save("BStree.txt");
-	tree1.load("BStree.txt");
+	tree.save("BSTree.txt");
+	tree1.load("BSTree.txt");
 
 	std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
 	std::string buffer;
