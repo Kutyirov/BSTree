@@ -15,18 +15,18 @@ TEST_CASE("Creating tree") {
 
 TEST_CASE("Printing of tree by various traversal order") {
     BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
-    std::string pre = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
-    std::string in = "1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  ";
-    std::string post = "1  3  2  5  7  6  4  9  11  10  13  15  14  12  8  ";
+    std::string direct = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
+    std::string symmetric = "1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  ";
+    std::string reverse = "1  3  2  5  7  6  4  9  11  10  13  15  14  12  8  ";
 
     std::string str;
     std::stringstream out(str);
 
-    tree.print_units(out, BSTree::traversal_order::pre);
+    tree.print_units(out, BSTree::traversal_order::direct);
     out<<std::endl;
-    tree.print_units(out, BSTree::traversal_order::in);
+    tree.print_units(out, BSTree::traversal_order::symmetric);
     out<<std::endl;
-    tree.print_units(out, BSTree::traversal_order::post);
+    tree.print_units(out, BSTree::traversal_order::reverse);
     out<<std::endl;
 
     std::string result_pre;
@@ -53,7 +53,7 @@ TEST_CASE("Addig node") {
     std::string str;
     std::stringstream out(str);
 
-    tree.print_order(out, BSTree::traversal_order::pre);
+    tree.print_units(out, BSTree::traversal_order::direct);
 
     std::string result = "25  12  4  0  1  7  5  9  20  34  67  78  ";
     std::string result_of_adding;
@@ -74,7 +74,7 @@ TEST_CASE("Deleting node") {
     std::string str;
     std::stringstream out(str);
 
-    tree.print_units(out, BSTree::traversal_order::pre);
+    tree.print_units(out, BSTree::traversal_order::direct);
 
     std::string result_of_deleting;
     getline(out, result_of_deleting);
