@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include <tree.hpp>
+#include <BSTree.hpp>
 #include <string>
 #include <sstream>
 #include <iostream>
