@@ -15,6 +15,6 @@ TEST_CASE("Creating tree") {
 }
 
 TEST_CASE("Creating tree2") {
-	  BSTree::Tree tree;
-	  REQUIRE(tree.empty_tree{ 2 } == true);
+	  BSTree::Tree tree{ 1 };
+	  REQUIRE(tree.empty_tree() == false);
 }
