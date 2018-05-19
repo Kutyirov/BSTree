@@ -8,9 +8,9 @@
 
 TEST_CASE("Creating tree") {
     BStree::Tree<int> tree;
-    REQUIRE(tree.empty() == false);
+    REQUIRE(tree.empty_tree() == false);
     BStree::Tree<int> tree_{1};
-    REQUIRE(tree_.empty() == true);
+    REQUIRE(tree_.empty_tree() == true);
 }
 
 TEST_CASE("Printing of tree by various traversal order") {
@@ -22,11 +22,11 @@ TEST_CASE("Printing of tree by various traversal order") {
     std::string str;
     std::stringstream out(str);
 
-    tree.print_order(out, BStree::traversal_order::pre);
+    tree.print_units(out, BStree::traversal_order::pre);
     out<<std::endl;
-    tree.print_order(out, BStree::traversal_order::in);
+    tree.print_units(out, BStree::traversal_order::in);
     out<<std::endl;
-    tree.print_order(out, BStree::traversal_order::post);
+    tree.print_units(out, BStree::traversal_order::post);
     out<<std::endl;
 
     std::string result_pre;
@@ -45,9 +45,9 @@ TEST_CASE("Printing of tree by various traversal order") {
 TEST_CASE("Addig node") {
     BStree::Tree<int> tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
-    tree.add(1);
-    tree.add(20);
-    tree.add(5);
+    tree.insert(1);
+    tree.insert(20);
+    tree.insert(5);
 
 
     std::string str;
@@ -65,16 +65,16 @@ TEST_CASE("Addig node") {
 TEST_CASE("Deleting node") {
     BStree::Tree<int> tree = { 25, 34, 12, 4, 7, 67, 78, 9, 0 };
 
-    tree.remove(25);
-    tree.remove(0);
-    tree.remove(12);
+    tree.delete_units(25);
+    tree.delete_units(0);
+    tree.delete_units(12);
 
     std::string result = "34  4  7  9  67  78  ";
 
     std::string str;
     std::stringstream out(str);
 
-    tree.print_order(out, BStree::traversal_order::pre);
+    tree.print_units(out, BStree::traversal_order::pre);
 
     std::string result_of_deleting;
     getline(out, result_of_deleting);
@@ -99,8 +99,8 @@ TEST_CASE("Input in file") {
 
 TEST_CASE("Existence of node") {
     BStree::Tree<int> tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
-    REQUIRE(tree.search(8) == true);
-    REQUIRE(tree.search(100) == false);
+    REQUIRE(tree.exists(8) == true);
+    REQUIRE(tree.exists(100) == false);
 }
 
 TEST_CASE("Saving in and loading from file") {
