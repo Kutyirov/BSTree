@@ -55,19 +55,19 @@ auto Tree::empty_tree() const -> bool {
     return false;
 }
 
-auto BSTree::Tree::print_units(traversal_order c) const -> void {
+auto BSTree::Tree::print_units(std::ostream& stream, traversal_order c) const -> void {
   Node* p = root;
   switch (c) {
     case traversal_order::direct:
-      print_direct(p);
+      print_direct(stream,p);
       std::cout << std::endl;
       break;
     case traversal_order::symmetric:
-      print_symmetric(p);
+      print_symmetric(stream,p);
       std::cout << std::endl;
       break;
     case traversal_order::reverse:
-      print_reverse(p);
+      print_reverse(stream,p);
       std::cout << std::endl;
       break;
     default:
