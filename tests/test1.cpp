@@ -8,9 +8,9 @@
 
 TEST_CASE("Creating tree") {
 	BSTree::Tree tree;
-	REQUIRE(tree.empty_tree() == false);
+	REQUIRE(tree.empty_tree() == true);
 	BSTree::Tree tree_{ 1 };
-	REQUIRE(tree_.empty_tree() == true);
+	REQUIRE(tree_.empty_tree() == false);
 }
 
 TEST_CASE("Printing of tree by various traversal order") {
