@@ -54,7 +54,7 @@ class Tree {
   auto print() const -> void;  //начальный print вызывает print от корня
   auto value_length(int) const -> unsigned;  // длина числа
   auto empty_tree() const -> bool;  //проверка на пустоту
-  auto print_units(std::ostream, traversal_order) const -> std::ostream&;  //вывод узлов вызывает один из 3-х вариантов
+  auto print_units(std::ostream&, traversal_order) const -> std::ostream&;  //вывод узлов вызывает один из 3-х вариантов
   auto delete_unit(int) -> bool;  //удаление
   auto exists(int) -> Node*&;     //поиск узла
   auto save(const std::string&) const -> bool;
