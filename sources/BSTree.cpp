@@ -55,7 +55,7 @@ auto Tree::empty_tree() const -> bool {
     return false;
 }
 
-auto BSTree::Tree::print_units(std::ostream& stream, traversal_order c) const -> void {
+auto BSTree::Tree::print_units(std::ostream& stream, traversal_order c) const -> std::ostream& {
   Node* p = root;
   switch (c) {
     case traversal_order::direct:
