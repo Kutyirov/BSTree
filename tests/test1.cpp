@@ -80,3 +80,49 @@ TEST_CASE("DELETING NODE") {
     getline(out, result_of_deleting);
     REQUIRE(result == result_of_deleting);
 }
+
+TEST_CASE("Input in file") {
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+
+    std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
+    std::string buffer;
+    std::stringstream out (buffer);
+
+    out<<tree;
+
+    std::string result;
+    getline(out, result);
+
+    REQUIRE(result == text);
+}
+
+TEST_CASE("Existence of node") {
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    REQUIRE(tree.exists(8) == true);
+    REQUIRE(tree.exists(100) == false);
+}
+
+TEST_CASE("Saving in and loading from file") {
+    BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
+    BSTree::Tree tree1;
+
+    std::ofstream fout("answer.txt");
+    fout << "Да";
+    fout.close();
+
+    std::freopen("answer.txt", "r", stdin);
+
+    tree.save("BStree.txt");
+    tree1.load("BStree.txt");
+
+    std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
+    std::string buffer;
+    std::stringstream out (buffer);
+
+    out<<tree1;
+
+    std::string result;
+    getline(out, result);
+
+    REQUIRE(result == text);
+}
