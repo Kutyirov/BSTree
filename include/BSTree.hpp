@@ -19,7 +19,6 @@ namespace BSTree {
 				clean(node->right);
 			}
 			delete node;
-			root = nullptr;
 		};
 
 		auto print(Node*, unsigned) const -> void;  //перегрузка print от корня второй
@@ -70,6 +69,7 @@ namespace BSTree {
 
 		~Tree() {  //деструктор с рекурсией
 			clean(root);
+			root = nullptr;
 		}
 	};
 }
