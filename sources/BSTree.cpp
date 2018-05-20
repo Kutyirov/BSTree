@@ -20,8 +20,10 @@ auto BSTree::Tree::swap(Tree& tree) -> void {
 
 auto Tree::insert(int value) -> bool {
 	Node* p = root;
-	if (p == nullptr)
+	if (p == nullptr) {
 		root = new Node{ value, nullptr, nullptr };
+		return true;
+	}
 	else
 		for (;;) {
 			if (p->data > value)
