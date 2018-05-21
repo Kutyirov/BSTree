@@ -56,7 +56,7 @@ TEST_CASE("ADDING NODE") {
     std::string str;
     std::stringstream out(str);
     tree.print_units(out, BSTree::traversal_order::direct);
-    std::string result = "51 16 4 1 11 32 25 93 71 53 80 ";
+    std::string result = "51  16  4  1  11  32  25  93  71  53  80  ";
     std::string result_of_adding;
     getline(out, result_of_adding);
     REQUIRE(result == result_of_adding);
@@ -79,7 +79,7 @@ TEST_CASE("DELETING NODE") {
 TEST_CASE("Input in file") {
     BSTree::Tree tree = { 8, 4, 12, 2, 6, 10, 14, 1, 3, 5, 7, 9, 11, 13, 15 };
 
-    std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
+    std::string text = "8 4 2 1 3 6 5 7 12 10 9 11 14 13 15 ";
     std::string buffer;
     std::stringstream out (buffer);
 
@@ -110,7 +110,7 @@ TEST_CASE("Saving in and loading from file") {
     tree.save("BStree.txt");
     tree1.load("BStree.txt");
 
-    std::string text = "8  4  2  1  3  6  5  7  12  10  9  11  14  13  15  ";
+    std::string text = "8 4 2 1 3 6 5 7 12 10 9 11 14 13 15 ";
     std::string buffer;
     std::stringstream out (buffer);
 
