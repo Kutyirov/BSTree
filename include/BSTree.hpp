@@ -33,7 +33,7 @@ namespace BSTree {
 
 	public:
 		Tree() : root{ nullptr } {};  //конструктор по умолчанию
-		Tree(std::initializer_list<int> list) {  //конструктор от вектора
+		Tree(std::initializer_list<int> list):Tree() {  //конструктор от вектора
 			for (auto i : list)
 				insert(i);
 		};
