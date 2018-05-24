@@ -202,7 +202,9 @@ auto BSTree::Tree::exists(int value) -> bool {
 }
 
 auto Tree::operator=(const Tree& tree) -> Tree & {
-	this->~Tree();
+	//this->~Tree();
+	clean(root);
+	root = nullptr;
 	Tree t1(tree);
 	this->root = t1.root;
 	// this->copy(tree.root);
