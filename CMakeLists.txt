@@ -39,7 +39,6 @@ cmake_minimum_required(VERSION 3.0)
 		enable_testing()
 		file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
 		add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
-		target_link_libraries(check ${PROJECT_NAME} ${DEPENDS_LIBRARIES})
 		add_test(NAME check COMMAND check "-s" "-r" "compact" "--use-colour" "yes") 
 	endif()
 	
