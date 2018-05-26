@@ -23,6 +23,7 @@ This project implements the following methods
  
  
  Building of a project:
+ 
 $ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=install
 
 $ cmake --build _build --target install
