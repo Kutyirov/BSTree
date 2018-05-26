@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 	
 	option(BUILD_EXAMPLES "Build examples" OFF)
 	option(BUILD_TESTS "Build tests" OFF)
-	option(BUILD_BENCHMARK "Build benchmarks" ON)
+	option(BUILD_BENCHMARK "Build benchmarks" OFF)
 	
 	project(BStree)
 	
