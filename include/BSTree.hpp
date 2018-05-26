@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <sstream>
 #include <vector>
 #include <fstream>
@@ -9,6 +8,7 @@ namespace BSTree {
 		T data;
 		Node<T>* left;
 		Node<T>* right;
+		Node<T>* parent;
 	};
 
 	enum class traversal_order { direct = 'a', symmetric = 'b', reverse = 'c' };
@@ -101,21 +101,21 @@ template <typename T>
 auto Tree<T>::insert(T value) -> bool {
 	Node<T>* p = root;
 	if (p == nullptr) {
-		root = new Node<T>{ value, nullptr, nullptr };
+		root = new Node<T>{ value, nullptr, nullptr, nullptr };
 		return true;
 	}
 	else
 		for (;;) {
 			if (p->data > value)
 				if (p->left == nullptr) {
-					p->left = new Node<T>{ value, nullptr, nullptr };
+					p->left = new Node<T>{ value, nullptr, nullptr, p };
 					return true;
 				}
 				else
 					p = p->left;
 			else if (p->data < value)
 				if (p->right == nullptr) {
-					p->right = new Node<T>{ value, nullptr, nullptr };
+					p->right = new Node<T>{ value, nullptr, nullptr, p };
 					return true;
 				}
 				else
@@ -404,3 +404,5 @@ void show_menu() {
 		<< "7. Проверить наличие узла" << std::endl
 		<< "8. Завершить работу программы" << std::endl;
 }
+
+
