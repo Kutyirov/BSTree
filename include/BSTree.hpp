@@ -146,7 +146,7 @@ auto BSTree::Tree<T>::print_units(std::ostream& stream, traversal_order c) const
 	switch (c) {
 	case traversal_order::direct:
 		print_direct(stream, p);
-		cout << std::endl;
+		std::cout << std::endl;
 		break;
 	case traversal_order::symmetric:
 		print_symmetric(stream, p);
