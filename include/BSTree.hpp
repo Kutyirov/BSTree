@@ -3,6 +3,8 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <iterator>
+
 namespace BSTree {
 	template <typename T>
 	struct Node {
@@ -13,6 +15,121 @@ namespace BSTree {
 	};
 
 	enum class traversal_order { direct = 'a', symmetric = 'b', reverse = 'c' };
+
+
+	template<typename T>
+	class Iterator: public std::iterator<std::bidirectional_iterator_tag, Node<T>> {
+    private:
+		Node<T>* ptr;
+		Node<T>* next(Node<T>* node);
+		Node<T>* prev(Node<T>* node);
+		auto min(Node<T>* node) const->Node<T>*;
+		auto max(Node<T>* node) const->Node<T>*;
+	public:
+		Iterator(Node<T>* p) : ptr{ p } {};
+		Iterator(const Iterator<T>& it) : ptr{ it.ptr } {};
+		Iterator<T>& operator=(const Iterator<T>& it);
+		Iterator<T>& operator++();
+		Iterator<T> operator++(int);
+		Iterator<T>& operator--();
+		Iterator<T> operator--(int);
+		bool operator==(const Iterator<T>& it) const;
+		bool operator!=(const Iterator<T>& it) const;
+//		type& operator*() const;
+};
+
+	template<typename T>
+	auto Iterator<T>::min(Node<T>* node) const -> Node<T>* {
+		while (node->left != nullptr)
+			node = node->left;
+		return node;
+	}
+
+	template<typename T>
+	auto Iterator<T>::max(Node<T>* node) const -> Node<T>* {
+		while (node->right != nullptr)
+			node = node->right;
+		return node;
+	}
+
+	template<typename T>
+	Node<T>* Iterator<T>::next(Node<T>* node) {
+		if (node->right != nullptr) {
+			return min(node->right);
+		}
+		Node<T>* par = node->parent;
+		while (par != nullptr && node == par->right) {
+			node = par;
+			par = par->parent;
+		}
+		return par;
+	}
+
+	template<typename T>
+	Node<T>* Iterator<T>::prev(Node<T>* node) {
+		if (node->left != nullptr) {
+			return max(node->left);
+		}
+		Node<T>* par = node->parent;
+		while (par != nullptr && node == par->left) {
+			node = par;
+			par = par->parent;
+		}
+		return par;
+	}
+
+	template<typename T>
+	Iterator<T>& Iterator<T>::operator=(const Iterator<T>& it) {
+		ptr = it.ptr;
+	}
+
+	template<typename T>
+	Iterator<T>& Iterator<T>::operator++() {
+		ptr = next(ptr);
+		return *this;
+	}
+
+	template<typename T>
+	Iterator<T> Iterator<T>::operator++(int value) {
+		Iterator<T> t(*this);
+		for (unsigned i = 0; i < value; i++) 
+			++(*this);
+		return t;
+	}
+
+	template<typename T>
+	Iterator<T>& Iterator<T>::operator--() {
+		ptr = prev(ptr);
+		return *this;
+	}
+
+	template<typename T>
+	Iterator<T> Iterator<T>::operator--(int value) {
+		Iterator<T> t(*this);
+		for (unsigned i = 0; i < value; i++) 
+			--(*this);
+		return t;
+	}
+
+	template<typename T>
+	bool Iterator<T>::operator==(const Iterator<T>& it) const {
+		return ptr == it.ptr;
+	}
+
+	template<typename T>
+	bool Iterator<T>::operator!=(const Iterator<T>& it) const {
+		return ptr != it.ptr;
+	}
+
+	/*template<typename T>
+	type& Iterator<T>::operator*() const {
+		return ptr->data;
+	}*/
+
+
+
+
+
 
 	template <typename T>
 	class Tree {
@@ -62,6 +179,22 @@ namespace BSTree {
 		auto exists(T)->bool;     //поиск узла
 		auto save(const std::string&) const -> bool;
 		auto load(const std::string&) -> bool;
+
+		Iterator<T> begin() {                         //итератор от min и max значений дерева
+			Node<T>* p = root;
+			while (p->left != nullptr)
+				p = p->left;
+			return iterator<T>(p);
+		}
+
+		Iterator<T> end() {
+			Node<T>* p = root;
+			while (p->right != nullptr)
+				p = p->right;
+			return iterator<T>(p);
+		}
+
+
 
 		friend auto operator<<(std::ostream& stream, const Tree<T>& tree)
 			-> std::ostream & {  //перегрузка загрузки
