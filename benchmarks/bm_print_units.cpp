@@ -11,14 +11,13 @@ int main() {
     clock_t  t_start;
     clock_t  t_end;
     BSTree::Tree<int> tree;
-    std::freopen("tree_bench.txt", "w", stdout);
     for (size_t exp = 1; exp < 9;  exp ++ ) {
         int value;
         for(size_t num_el = 1; num_el <= pow(10,exp); num_el++) {
             value  = rand();
             tree.insert(value);
         }
-        std::ofstream fout("bench4.txt");
+        std::ofstream fout("bm.txt");
         fout<<"Print direct order:"<<std::endl;
         t_start = clock();
         tree.print_units(std::cout, BSTree::traversal_order::direct);
