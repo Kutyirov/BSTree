@@ -189,7 +189,7 @@ namespace BSTree {
 
 		Iterator<T> end() {
 			Node<T>* p = root;
-			while (p->right != nullptr)
+			while (p != nullptr)
 				p = p->right;
 			return Iterator<T>(p);
 		}
