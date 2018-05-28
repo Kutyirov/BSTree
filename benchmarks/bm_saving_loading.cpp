@@ -14,7 +14,6 @@ int main() {
 	clock_t  t_end;
 	BSTree::Tree<int> tree;
 	for (size_t exp = 1; exp < 9; exp++) {
-		std::freopen("answer.txt", "r", stdin);
 		int value;
 		t_start = clock();
 		for (size_t num_el = 1; num_el <= pow(10, exp); num_el++) {
