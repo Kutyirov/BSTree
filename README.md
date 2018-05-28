@@ -56,6 +56,7 @@ $ cd _build
 $ ./example
 ```
 ##Benchmark
+
 Number|Print,s|Print direct,s|Print symmetric,s|Print reverse,s|Insert,s|Delete_units,s|Exists,s|Saving,s|Loading,s
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 10|0.000092|0.000043|0.000001|0.000003|0.000027|0.000057|0.000003|0.000062|0.000014
