@@ -184,14 +184,14 @@ namespace BSTree {
 			Node<T>* p = root;
 			while (p->left != nullptr)
 				p = p->left;
-			return Iterator<T>(p);
+			return iterator<T>(p);
 		}
 
 		Iterator<T> end() {
 			Node<T>* p = root;
-			while (p != nullptr)
+			while (p->right != nullptr)
 				p = p->right;
-			return Iterator<T>(p);
+			return iterator<T>(p);
 		}
 
 
@@ -299,49 +299,18 @@ auto BSTree::Tree<T>::print_units(std::ostream& stream, traversal_order c) const
 
 template <typename T>
 auto BSTree::Tree<T>::delete_unit(T value) -> bool {
-	Node<T>* p = root;
-	if ((p->data != value) &&
-		((p->right != nullptr) && (p->right->data != value)) &&
-		((p->left != nullptr) && (p->left->data != value)) ||
-		(p->left == nullptr) || (p->right == nullptr))
-		if ((p->data != value) &&
-			(((p->right != nullptr) && (p->right->data != value)) ||
-			((p->left != nullptr) && (p->left->data != value))))
-
-			for (;;) {  //поиск предка узла со значением value - p
-				if (value > p->data)
-					p = p->right;
-				else if (value < p->data)
-					p = p->left;
-				while ((p->left == nullptr) || (p->right == nullptr)) {
-					if ((p->right != nullptr) && (p->right->data == value))
-						break;
-					if ((p->left != nullptr) && (p->left->data == value))
-						break;
-					if (p->left == nullptr)
-						p = p->right;
-					else if (p->right == nullptr)
-						p = p->left;
-					if (p == nullptr)
-						break;
-				}
-				if (p == nullptr)
-					return false;
-				if ((p->right != nullptr) && (p->right->data == value))
-					break;
-				if ((p->left != nullptr) && (p->left->data == value))
-					break;
-			}
-
-	Node<T>* q = p;  //приписывание узла со значением value к q
-	if (p->right != nullptr)
-		if (p->right->data == value)
-			q = p->right;
-	if (p->left != nullptr)
-		if (p->left->data == value)
-			q = p->left;
+	Node<T>* q = root;
+	while ((q != nullptr) && (q->data != value)) {
+		if (value > q->data)
+			q = q->right;
+		else if (value < q->data)
+			q = q->left;
+	}
+	if (q == nullptr) 
+		return false;
+	Node<T>* p = q->parent;  //приписывание узла со значением value к q
 	if ((q->right == nullptr) && (q->left == nullptr)) {
-		if (p == q)
+		if (p == nullptr)
 			root = nullptr;
 		else {
 			if (p->right == q)
@@ -353,19 +322,23 @@ auto BSTree::Tree<T>::delete_unit(T value) -> bool {
 	}
 	else if ((q->right != nullptr) && (q->left != nullptr)) {
 		if (q->right->left == nullptr) {
-			if (p == q) {
-				p->right->left = p->left;
-				root = p->right;
-				delete p;
+			if (p == nullptr) {
+				q->right->left = q->left;
+				q->left->parent = q->right;
+				root = q->right;
+				delete q;
+				root->parent = nullptr;
 			}
 			else {
 				q->right->left = q->left;
+				q->left->parent = q->right;
 				if (p->right == q) {
 					p->right = q->right;
 				}
 				else {
 					p->left = q->right;
 				}
+				q->right->parent = p;
 				delete q;
 			}
 		}
@@ -377,29 +350,41 @@ auto BSTree::Tree<T>::delete_unit(T value) -> bool {
 			Node<T>* t = r->left->right;
 			delete r->left;
 			r->left = t;
+			if (t != nullptr)
+				t->parent = r->left;
 		}
 	}
 	else if (q->right == nullptr)
-		if (p == q) {
+		if (p == nullptr) {
 			root = q->left;
-			delete p;
+			delete q;
+			root->parent = nullptr;
 		}
 		else {
-			if (p->right == q)
+			if (p->right == q) {
 				p->right = q->left;
-			else
+				q->left->parent = p;
+			}
+			else {
 				p->left = q->left;
+				q->left->parent = p;
+			}
 			delete q;
 		}
-	else if (p == q) {
+	else if (p == nullptr) {
 		root = q->right;
 		delete p;
+		root->parent = nullptr;
 	}
 	else {
-		if (p->right == q)
+		if (p->right == q) {
 			p->right = q->right;
-		else
+			q->right->parent = p;
+		}
+		else {
 			p->left = q->right;
+			q->right->parent = p;
+		}
 		delete q;
 	}
 	return true;
@@ -538,5 +523,3 @@ void show_menu() {
 		<< "7. Проверить наличие узла" << std::endl
 		<< "8. Завершить работу программы" << std::endl;
 }
-
-
