@@ -182,7 +182,6 @@ namespace BSTree {
 		auto print_units(std::ostream&, traversal_order) const->std::ostream&;  //вывод узлов вызывает один из 3-х вариантов
 		auto delete_unit(T) -> bool;  //удаление
 		auto exists(T)->bool;     //поиск узла
-		auto save(const std::string&) const -> bool;
 		auto load(const std::string&) -> bool;
 
 		Iterator<T> begin() {                         //итератор от min и max значений дерева
