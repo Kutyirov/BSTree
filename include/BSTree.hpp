@@ -36,6 +36,7 @@ namespace BSTree {
 		bool operator==(const Iterator<T>& it) const;
 		bool operator!=(const Iterator<T>& it) const;
 		T& operator*() const;
+		T* operator->() const;
 };
 
 	template<typename T>
@@ -126,6 +127,10 @@ namespace BSTree {
 		return ptr->data;
 	}
 
+	template<typename T>
+	T* Iterator<T>::operator->() const {
+		return &(ptr->data);
+	}
 
 
 
@@ -463,30 +468,6 @@ auto BSTree::Tree<T>::print_reverse(std::ostream& output, const Node<T>* p) cons
 		output << p->data << "  ";
 	}
 	return output;
-}
-
-template <typename T>
-auto Tree<T>::save(const std::string& way) const -> bool {
-	std::ifstream output(way);
-	bool flag = output.is_open();
-	output.close();
-	if (flag) {
-		std::cout << "Файл уже существует, перезаписать ? (Yes|No): ";
-		std::string ans;
-		std::cin >> ans;
-		if (ans == "y" || ans == "Y" || ans == "yes" || ans == "Yes" ||
-			ans == "YES") {
-			std::ofstream input(way);
-			input << *this;
-			input.close();
-			return true;
-		}
-		return false;
-	}
-	std::ofstream input(way);
-	input << *this;
-	input.close();
-	return true;
 }
 
 template <typename T>
