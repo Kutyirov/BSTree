@@ -6,6 +6,16 @@
 #include <iterator>
 
 namespace BSTree {
+	struct Student {
+		std::string name;
+		const bool operator < (const Student &s2) {
+			return this->name < s2.name;
+		}
+		const bool operator > (const Student &s2) {
+			return this->name > s2.name;
+		}
+	};
+
 	template <typename T>
 	struct Node {
 		T data;
@@ -194,7 +204,7 @@ namespace BSTree {
 
 		Iterator<T> end() {
 			Node<T>* p = root;
-			while (p->right != nullptr)
+			while (p != nullptr)
 				p = p->right;
 			return Iterator<T>(p);
 		}
@@ -516,6 +526,7 @@ auto Tree<T>::load(const std::string& way) -> bool {
 		this->insert(t);
 	}
 	return true;
+
 }
 
 void show_menu() {
