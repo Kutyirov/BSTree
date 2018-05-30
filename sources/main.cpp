@@ -12,11 +12,13 @@ int main(int argc, char* argv[])
 	setlocale(LC_ALL, "RUS");
 	std::initializer_list<int> list;
 
+	std::ifstream output(way);
+	bool flag;
+
 	Tree<int> tree(list);
 	for (unsigned i = 1; i < argc; i++) {
 		tree.insert(atoi(argv[i]));
 	}
-
 	int ex = 0;
 
 	while (ex != 1) {
@@ -81,7 +83,24 @@ int main(int argc, char* argv[])
 		case 5:
 			std::cout << "Введите путь до файла" << std::endl;
 			std::cin >> way;
-			tree.save(way);
+			flag = output.is_open();
+			output.close();
+			if (flag) {
+				std::cout << "Файл уже существует, перезаписать ? (Yes|No): ";
+				std::string ans;
+				std::cin >> ans;
+				if (ans == "y" || ans == "Y" || ans == "yes" || ans == "Yes" ||
+					ans == "YES") {
+					std::ofstream input(way);
+					input << tree;
+					input.close();
+				}
+			}
+			else {
+				std::ofstream input(way);
+				input << tree;
+				input.close();
+			}
 			break;
 		case 6:
 			std::cout << "Введите путь до файла" << std::endl;
