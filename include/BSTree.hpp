@@ -35,8 +35,7 @@ namespace BSTree {
 		Iterator<T> operator--(int);
 		bool operator==(const Iterator<T>& it) const;
 		bool operator!=(const Iterator<T>& it) const;
-//		type& operator*() const;
-		
+		T& operator*() const;
 };
 
 	template<typename T>
@@ -122,10 +121,10 @@ namespace BSTree {
 		return ptr != it.ptr;
 	}
 
-	/*template<typename T>
-	type& Iterator<T>::operator*() const {
+	template<typename T>
+	T& Iterator<T>::operator*() const {
 		return ptr->data;
-	}*/
+	}
 
 
 
