@@ -31,5 +31,17 @@ int main(int argc, char* argv[])
 	std::cout << std::endl;
 	for (auto& item : tree)
 		std::cout << item << " ";
+	std::cout << std::endl;
+	
+	Tree<int> tree3{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	tree3.print();
+	Tree<int> tree4;
+	auto it = tree3.begin();
+	unsigned n = 0;
+	for (; it != tree.end(); ++it) {
+		n++;
+	}
+	tree4.balance(tree3, n);
+	tree4.print();
 	std::cin.get();
 }
